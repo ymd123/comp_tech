@@ -1,22 +1,22 @@
 
 
-//ƒvƒƒgƒ^ƒCƒvéŒ¾
+//ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€ 
 
-//start‰æ–Ê‚Ì•\¦
+//startç”»é¢ã®è¡¨ç¤º
 void start(void);
-//ˆø”i‰‰ZqˆÈŠOj‚ğƒfƒBƒXƒvƒŒƒC‚É•\¦‚³‚¹‚éŠÖ”
+//å¼•æ•°ï¼ˆæ¼”ç®—å­ä»¥å¤–ï¼‰ã‚’ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã«è¡¨ç¤ºã•ã›ã‚‹é–¢æ•°
 void display_value(int fig);
 /*
-‰‰Zq‚ğƒfƒBƒXƒvƒŒƒC‚É•\¦‚·‚éŠÖ”
-display_operator(0)‚Í+‚Ì•\¦
-display_operator(1)‚Í-‚Ì•\¦
-display_operator(2)‚Í*‚Ì•\¦
-display_operator(3)/‚Ì•\¦
-display_operator(4)‚Í=‚Ì•\¦
+æ¼”ç®—å­ã‚’ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã«è¡¨ç¤ºã™ã‚‹é–¢æ•°
+display_operator(0)ã¯+ã®è¡¨ç¤º
+display_operator(1)ã¯-ã®è¡¨ç¤º
+display_operator(2)ã¯*ã®è¡¨ç¤º
+display_operator(3)/ã®è¡¨ç¤º
+display_operator(4)ã¯=ã®è¡¨ç¤º
 */
 void display_operator(int operator);
 
-//•K—v‚Èƒ‰ƒCƒuƒ‰ƒŠ‚ğinclude
+//å¿…è¦ãªãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’include
 #include <stdio.h>
 #include "sys/alt_stdio.h"
 #include <stdlib.h>
@@ -26,15 +26,15 @@ void display_operator(int operator);
 #include <stdbool.h>
 #include<math.h>
 #include "altera_avalon_pio_regs.h"
-#include "alt_types.h" //•Ï”‚ÌŒ^’è‹`
-#include "sys/alt_irq.h" //Š„‚İ—p
+#include "alt_types.h" //å¤‰æ•°ã®å‹å®šç¾©
+#include "sys/alt_irq.h" //å‰²è¾¼ã¿ç”¨
 #include "altera_avalon_timer_regs.h"
 
 #define SIZE 256
 #define NULL 0
 /*
- speed:1@@@‚P•b‚¸‚Â
- speed:10@@@0.1•b‚¸‚Â
+ speed:1ã€€ã€€ã€€ï¼‘ç§’ãšã¤
+ speed:10ã€€ã€€ã€€0.1ç§’ãšã¤
 
  */
 #define SPEED 100
@@ -42,7 +42,7 @@ void display_operator(int operator);
 #define COUNT_DAWN 5
 #define GAME_NUMBER 4
 #define SLOT_NUM 3
-#define SLOT0_SPEED 0.8
+#define SLOT0_SPEED 0.8 
 #define SLOT1_SPEED 0.5
 #define SLOT2_SPEED 0.2
 #define SLOT3_SPEED 0.1
@@ -103,7 +103,7 @@ int main()
         bool correct_flag = true;
         int seed=0;
 
-        //‰Šú‰»
+        //åˆæœŸåŒ–
         for(j=0;j<GAME_NUMBER;j++){
         for(i=0;i<256;i++){
         	score[j][i]=999;
@@ -133,7 +133,7 @@ int main()
 
 
 
-        //”š‚Ì0‚ğ7seg‚É•\¦
+        //æ•°å­—ã®0ã‚’7segã«è¡¨ç¤º
         *(volatile unsigned char *)HEX0_BASE = 64;
         *(volatile unsigned char *)HEX1_BASE = 64;
         *(volatile unsigned char *)HEX2_BASE = 64;
@@ -152,7 +152,7 @@ int main()
 
     		  bool_check(flag7,flag11,flag13,flag14);
 
-    		  //flag ‰Šú‰»ˆ—
+    		  //flag åˆæœŸåŒ–å‡¦ç†
     		if(flag_start == false){
     				flag_start = true;
     				flag_random = false;
@@ -176,7 +176,7 @@ int main()
                   seg_display(value);
 
     	          /*
-    	          1‚©2‚ğƒXƒCƒbƒ`‚Å‘I‘ğ‚µAKEY0‚ğ‰Ÿ‚·‚±‚Æ‚ÅƒQ[ƒ€‚ğŒˆ’è‚·‚é
+    	          1ã‹2ã‚’ã‚¹ã‚¤ãƒƒãƒã§é¸æŠã—ã€KEY0ã‚’æŠ¼ã™ã“ã¨ã§ã‚²ãƒ¼ãƒ ã‚’æ±ºå®šã™ã‚‹
     	          1:calcurate game
     	          2:calcurator
     	          */
@@ -184,7 +184,7 @@ int main()
     	        	  reset();
     	        	  game(count%GAME_NUMBER);
     	        	  n_sleep = n;
-    	        	  //0.5•b’x‰„
+    	        	  //0.5ç§’é…å»¶
     	        	  while(n - n_sleep <= 1*SPEED/2){}
     	        	  count++;
     	          }
@@ -200,10 +200,10 @@ int main()
     	          				reset();
     	          		}
 
-    	          		//”Ô†“ü—Í‰æ–Ê
+    	          		//ç•ªå·å…¥åŠ›ç”»é¢
     	          		while(1){
 
-       	                  //calcurate game ‚Ìƒ‹[ƒv‚ğbreak‚µAƒQ[ƒ€‘I‘ğ‰æ–Ê‚É–ß‚é
+       	                  //calcurate game ã®ãƒ«ãƒ¼ãƒ—ã‚’breakã—ã€ã‚²ãƒ¼ãƒ é¸æŠç”»é¢ã«æˆ»ã‚‹
        	                  if(*(volatile unsigned char *)KEY_BASE==3){
        	                	flag_start = false;
        	                	flag_reset = false;
@@ -237,7 +237,7 @@ int main()
     	      	              bango[game_select_value][play_num[game_select_value]] = *(volatile unsigned char *)SWITCHES_BASE;
     	      	              display_value(bango[game_select_value][play_num[game_select_value]]);
     	      	              reset();
-    	      	              //bango ‚Ìd•¡‚ğŠm”F
+    	      	              //bango ã®é‡è¤‡ã‚’ç¢ºèª
     	      	              for(i=0,j=0;i<play_num[game_select_value];i++){
     	      	            	  if(bango[game_select_value][play_num[game_select_value]] == bango[game_select_value][i]){
     	      	            		  j++;
@@ -245,7 +245,7 @@ int main()
     	      	              }
               				play_num[game_select_value]++;
 
-    	      	              //d•¡‚È‚µ‚Ìê‡
+    	      	              //é‡è¤‡ãªã—ã®å ´åˆ
     	      	              if(j==0){
     	      	            	  player_num[game_select_value]++;
 
@@ -260,17 +260,17 @@ int main()
     	      	                   	      	              break;
     	      	          }
     	          		}
-    	          		//finish ”Ô†“ü—Í‰æ–Ê
+    	          		//finish ç•ªå·å…¥åŠ›ç”»é¢
 
 
 
 
-    	          		//ƒJƒEƒ“ƒgƒ_ƒEƒ“
+    	          		//ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³
     	          		i=0;
     	          		n_countdawn = n/SPEED;
                 		while(n/SPEED - n_countdawn < COUNT_DAWN + 1){
 
-         	                  //calcurate game ‚Ìƒ‹[ƒv‚ğbreak‚µAƒQ[ƒ€‘I‘ğ‰æ–Ê‚É–ß‚é
+         	                  //calcurate game ã®ãƒ«ãƒ¼ãƒ—ã‚’breakã—ã€ã‚²ãƒ¼ãƒ é¸æŠç”»é¢ã«æˆ»ã‚‹
          	                  if(*(volatile unsigned char *)KEY_BASE==3){
          	                    break;
          	                  }
@@ -283,7 +283,7 @@ int main()
                 		}
                 		display_start();
                 		reset();
-                		//finish ƒJƒEƒ“ƒgƒ_ƒEƒ“
+                		//finish ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³
 
     	                while (1) {
 
@@ -325,16 +325,16 @@ int main()
   	                				  }//finish sort
 
   	                				  //score display
-	            	  				  printf("-------- ŒvZƒQ[ƒ€@ƒ‰ƒ“ƒLƒ“ƒO --------\n");
+	            	  				  printf("-------- è¨ˆç®—ã‚²ãƒ¼ãƒ ã€€ãƒ©ãƒ³ã‚­ãƒ³ã‚° --------\n");
   	                				  for (i=0,k=0; i<SIZE; i++) {
   	                					  if(rank_ray[game_select_value][i] != 999 && rank_ray[game_select_value][i] != rank_ray[game_select_value][i-1]){
   	                						  k++;
   	  	                				  for (j=0; j<SIZE; j++) {
   	  	                					  if(rank_ray[game_select_value][i] == score[game_select_value][j]){
   	  	                						  status = j;
-  	  	                						  printf("%dˆÊ ”Ô†:%d ƒXƒRƒA:%d",k,j,score[game_select_value][j]);
+  	  	                						  printf("%dä½ ç•ªå·:%d ã‚¹ã‚³ã‚¢:%d",k,j,score[game_select_value][j]);
   	  	                						  if(j == bango[game_select_value][play_num[game_select_value]]){
-  	  	                							  printf(" ©@");
+  	  	                							  printf(" â†ã€€");
   	  	                							  rank = k;
   	  	                						  }
 	  	                							  printf("\n");
@@ -365,15 +365,15 @@ int main()
           	          				flag_calcurate = true;
           	          				for(i=0;i<10;i++){
 
-          	          				//rand()%(B-A+1)+A; A‚©‚çB‚Ü‚Å‚Ìƒ‰ƒ“ƒ_ƒ€®”
+          	          				//rand()%(B-A+1)+A; Aã‹ã‚‰Bã¾ã§ã®ãƒ©ãƒ³ãƒ€ãƒ æ•´æ•°
           	          				if(flag_random == false){
           	          					flag_random = true;
           	          					//srand(n);
           	          				}
 
-          	          				random_operator = rand()%3;//0‚©‚ç3‚Ü‚Å‚Ì®”(‰‰Zq‚Ì¶¬)
-          	          				random_value[0] = rand()%10+1;//‚©‚ç10‚Ü‚Å‚Ì®”
-          	          				random_value[1] = rand()%100+1;//1‚©‚ç100‚Ü‚Å‚Ì®”
+          	          				random_operator = rand()%3;//0ã‹ã‚‰3ã¾ã§ã®æ•´æ•°(æ¼”ç®—å­ã®ç”Ÿæˆ)
+          	          				random_value[0] = rand()%10+1;//ã‹ã‚‰10ã¾ã§ã®æ•´æ•°
+          	          				random_value[1] = rand()%100+1;//1ã‹ã‚‰100ã¾ã§ã®æ•´æ•°
 
 
 
@@ -397,7 +397,7 @@ int main()
       	          					//printf("miss\n");
       	          				}
           	          		}
-              	                  //‰æ–Ê•\¦
+              	                  //ç”»é¢è¡¨ç¤º
                 	          				display_value(random_value[1]);
                 	          				display_operator(random_operator);
                 	          				display_value(random_value[0]);
@@ -407,7 +407,7 @@ int main()
 
           	          		if(switch_stop_flag == true){
     	                  switch(*(volatile unsigned char *)KEY_BASE){
-    	                   //KEY0‚ğ‰Ÿ‚·‚Æ“ü—Í‚³‚ê‚½”š‚ğ•\¦‚µAvalue_array‚É‘ã“ü
+    	                   //KEY0ã‚’æŠ¼ã™ã¨å…¥åŠ›ã•ã‚ŒãŸæ•°å­—ã‚’è¡¨ç¤ºã—ã€value_arrayã«ä»£å…¥
     	                   	case 14:
     	                   		flag13 = false;
     	                   		flag11 = false;
@@ -435,7 +435,7 @@ int main()
 
 
     	                   /*
-    	                   KEY1‚ğ‰Ÿ‚·‚Æ‰‰Z‚ğ‚Ç‚ê‚É‚·‚é‚©operator‚ÉŠi”[
+    	                   KEY1ã‚’æŠ¼ã™ã¨æ¼”ç®—ã‚’ã©ã‚Œã«ã™ã‚‹ã‹operatorã«æ ¼ç´
     	                   */
 
     	                   	case 13:
@@ -466,7 +466,7 @@ int main()
 
 
     	                   /*
-    	                   KEY2‚ğ‰Ÿ‚·‚ÆŒvZ‚ªÀs‚³‚êAŒ‹‰Ê‚ª•\¦‚³‚ê‚é
+    	                   KEY2ã‚’æŠ¼ã™ã¨è¨ˆç®—ãŒå®Ÿè¡Œã•ã‚Œã€çµæœãŒè¡¨ç¤ºã•ã‚Œã‚‹
     	                   */
     	                   case 11:
     	               		    flag14 = false;
@@ -481,7 +481,7 @@ int main()
 
 
 
-    	                   //KEY3‚ª‰Ÿ‚³‚ê‚é‚ÆƒŠƒZƒbƒg
+    	                   //KEY3ãŒæŠ¼ã•ã‚Œã‚‹ã¨ãƒªã‚»ãƒƒãƒˆ
     	                           case 7:
     	                       		  flag14 = false;
     	                       		  flag13 = false;
@@ -501,7 +501,7 @@ int main()
     	                }//switch key_base
           	          		}
 
-     	                  //calcurate game ‚Ìƒ‹[ƒv‚ğbreak‚µAƒQ[ƒ€‘I‘ğ‰æ–Ê‚É–ß‚é
+     	                  //calcurate game ã®ãƒ«ãƒ¼ãƒ—ã‚’breakã—ã€ã‚²ãƒ¼ãƒ é¸æŠç”»é¢ã«æˆ»ã‚‹
      	                  if(*(volatile unsigned char *)KEY_BASE==3){
      	                	flag_start = false;
      	                	flag_reset = false;
@@ -532,7 +532,7 @@ int main()
       	          		}
       	          		//calcurator start
         while(1){
-            //ƒXƒCƒbƒ`‚ÆLED‚ğ˜A“®‚³‚¹‚Ä‚¢‚é
+            //ã‚¹ã‚¤ãƒƒãƒã¨LEDã‚’é€£å‹•ã•ã›ã¦ã„ã‚‹
                 value = *(volatile unsigned char *)SWITCHES_BASE;
                 *(volatile unsigned char *)LEDS_BASE = value;
 
@@ -554,14 +554,14 @@ int main()
                 seg_display(value);
 
                 /*
-                 00:4‚ÅŠ„‚èØ‚ê‚é@‚©‚Â@‹ô”
-                 01:4‚ÅŠ„‚é‚Æ1—]‚éŠï”(9,25,41,57,)
-                 10:4‚ÅŠ„‚é‚Æ2—]‚é‹ô”
-                 11:4‚ÅŠ„‚é‚Æ3—]‚éŠï”(11,19,43,51,75)
+                 00:4ã§å‰²ã‚Šåˆ‡ã‚Œã‚‹ã€€ã‹ã¤ã€€å¶æ•°
+                 01:4ã§å‰²ã‚‹ã¨1ä½™ã‚‹å¥‡æ•°(9,25,41,57,)
+                 10:4ã§å‰²ã‚‹ã¨2ä½™ã‚‹å¶æ•°
+                 11:4ã§å‰²ã‚‹ã¨3ä½™ã‚‹å¥‡æ•°(11,19,43,51,75)
                  */
 
 /*
-KEY‚ª‰Ÿ‚³‚ê‚½‚É*(volatile unsigned char *)KEY_BASE‚É‘ã“ü‚³‚ê‚é’l‚ÌŠÖŒW
+KEYãŒæŠ¼ã•ã‚ŒãŸæ™‚ã«*(volatile unsigned char *)KEY_BASEã«ä»£å…¥ã•ã‚Œã‚‹å€¤ã®é–¢ä¿‚
 KEY0:14
 KEY1:13
 KEY2:11
@@ -570,10 +570,10 @@ KEY3:7
 
 
                 switch(*(volatile unsigned char *)KEY_BASE){
-                //KEY0‚ğ‰Ÿ‚·‚Æ“ü—Í‚³‚ê‚½”š‚ğ•\¦‚µAvalue_array‚É‘ã“ü
+                //KEY0ã‚’æŠ¼ã™ã¨å…¥åŠ›ã•ã‚ŒãŸæ•°å­—ã‚’è¡¨ç¤ºã—ã€value_arrayã«ä»£å…¥
                 	case 14:
 
-                		//ƒoƒO‰ñ”ğ
+                		//ãƒã‚°å›é¿
                 		if(value_count == 0 || value_count == 1)flag11 = true;
 
             			if(start_buf_flag == true){
@@ -593,11 +593,11 @@ KEY3:7
 
 
                 /*
-                KEY1‚ğ‰Ÿ‚·‚Æ‰‰Z‚ğ‚Ç‚ê‚É‚·‚é‚©operator‚ÉŠi”[
-                0:‰ÁZ
-                1:Œ¸Z
-                2:æZ
-                3:œZ
+                KEY1ã‚’æŠ¼ã™ã¨æ¼”ç®—ã‚’ã©ã‚Œã«ã™ã‚‹ã‹operatorã«æ ¼ç´
+                0:åŠ ç®—
+                1:æ¸›ç®—
+                2:ä¹—ç®—
+                3:é™¤ç®—
                 */
 
                 	case 13:
@@ -612,27 +612,27 @@ KEY3:7
                 			switch (value%4) {
                 				case 0:
                 					operator[operator_count] = 0;
-                          // +‚Ì•\¦
+                          // +ã®è¡¨ç¤º
                 					display_operator(0);
                 					operator_count++;
                 					break;
                 				case 1:
                 					operator[operator_count] = 1;
-                          // -‚Ì•\¦
+                          // -ã®è¡¨ç¤º
                 					display_operator(1);
                 					operator_count++;
                 					break;
 
                 				case 2:
                 					operator[operator_count] = 2;
-                          // *‚Ì•\¦
+                          // *ã®è¡¨ç¤º
                 					display_operator(2);
                 					operator_count++;
                 					break;
 
                 				case 3:
                 					operator[operator_count] = 3;
-                          // /‚Ì•\¦
+                          // /ã®è¡¨ç¤º
                 					display_operator(3);
                 					operator_count++;
                 					break;
@@ -651,25 +651,25 @@ KEY3:7
 
 
                 /*
-                KEY2‚ğ‰Ÿ‚·‚ÆŒvZ‚ªÀs‚³‚êAŒ‹‰Ê‚ª•\¦‚³‚ê‚é
-                “®ì—áj
-                ƒfƒBƒXƒvƒŒƒC‚Éu2 + 3 * 1 - 4v‚Æo—Í‚³‚ê‚½ê‡
-                value_array‚É‚Í”’l‚ªŠi”[‚³‚ê‚é
+                KEY2ã‚’æŠ¼ã™ã¨è¨ˆç®—ãŒå®Ÿè¡Œã•ã‚Œã€çµæœãŒè¡¨ç¤ºã•ã‚Œã‚‹
+                å‹•ä½œä¾‹ï¼‰
+                ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã«ã€Œ2 + 3 * 1 - 4ã€ã¨å‡ºåŠ›ã•ã‚ŒãŸå ´åˆ
+                value_arrayã«ã¯æ•°å€¤ãŒæ ¼ç´ã•ã‚Œã‚‹
                 value_array[0]=2
                 value_array[1]=3
                 value_array[2]=1
                 value_array[3]=4
                 value_count = 4
-                operator‚É‚Í‰‰Zq”Ô†‚ªŠi”[‚³‚ê‚é
+                operatorã«ã¯æ¼”ç®—å­ç•ªå·ãŒæ ¼ç´ã•ã‚Œã‚‹
                 operator[0]= 0
                 operator[1]= 2
                 operator[2]=1
                 operator_count = 3
-                ‚ª‚»‚ê‚¼‚êŠi”[‚³‚ê‚Ä‚¢‚éB
-                ‚Ü‚¸1‚Â–Ú‚Ìƒ‹[ƒv‚Åoperator[1]==2‚æ‚è
-                value_array[1]*value_array[2]‚ªÀs‚³‚ê
-                value_array[1]‚É3(3*1)‚ª‘ã“ü‚³‚ê‚éB
-                ¶‹l‚ßˆ—‚Å
+                ãŒãã‚Œãã‚Œæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã€‚
+                ã¾ãš1ã¤ç›®ã®ãƒ«ãƒ¼ãƒ—ã§operator[1]==2ã‚ˆã‚Š
+                value_array[1]*value_array[2]ãŒå®Ÿè¡Œã•ã‚Œ
+                value_array[1]ã«3(3*1)ãŒä»£å…¥ã•ã‚Œã‚‹ã€‚
+                å·¦è©°ã‚å‡¦ç†ã§
                 value_array[0]=2
                 value_array[1]=3
                 value_array[2]=4
@@ -677,8 +677,8 @@ KEY3:7
                 operator[0]= 0
                 operator[1]= 1
                 operator_count = 2
-                ‚Â‚Ü‚èu2 + 3 - 4v‚Æ“¯‚¶ˆÓ–¡‚É‚È‚é
-                ‚Æ“®ì‚µ‚Ä‚¢‚­B
+                ã¤ã¾ã‚Šã€Œ2 + 3 - 4ã€ã¨åŒã˜æ„å‘³ã«ãªã‚‹
+                ã¨å‹•ä½œã—ã¦ã„ãã€‚
                 */
                 case 11:
 
@@ -687,7 +687,7 @@ KEY3:7
                 		    flag13 = true;
                 		    flag7 = false;
             			       flag11 = true;
-                         //æZœZ‚ğæ‚ÉŒvZ
+                         //ä¹—ç®—é™¤ç®—ã‚’å…ˆã«è¨ˆç®—
             			       count=0;
             			       for(i=0;i<=operator_count;i++){
             			    	   //if(count>SIZE)break;
@@ -703,7 +703,7 @@ KEY3:7
             			    	   printf("i=%d\n",i);
             			    	   printf("------------ */ --------------\n");
             			    	   if(operator[i]==2){
-                             //ŒvZ‚µA¶‹l‚ß
+                             //è¨ˆç®—ã—ã€å·¦è©°ã‚
             			    		   value_array[i]=value_array[i]*value_array[i+1];
             			    		   for(j=i+1;j<value_count-1;j++){
             			    			   value_array[j]=value_array[j+1];
@@ -716,7 +716,7 @@ KEY3:7
             			    		   i=0;
             			    	   }
             			    	   if(operator[i]==3){
-            			    		   //ŒvZ‚µA¶‹l‚ß
+            			    		   //è¨ˆç®—ã—ã€å·¦è©°ã‚
             			    		   operator[i]=operator[i+1];
             			    		   value_array[i]=value_array[i]/value_array[i+1];
             			    		   for(j=i+1;j<value_count-1;j++){
@@ -731,7 +731,7 @@ KEY3:7
             			    	   }
             			    	   //count++;
             			       }
-            			       //Ÿ‚É‰ÁZŒ¸Z‚ğŒvZ
+            			       //æ¬¡ã«åŠ ç®—æ¸›ç®—ã‚’è¨ˆç®—
             			       for(i=0;i<=operator_count;i++){
             			    	   i=0;
             			    	   if(operator_count==0)break;
@@ -746,7 +746,7 @@ KEY3:7
             			    	   printf("i=%d\n",i);
             			    	   printf("------------ +- --------------\n");
             			    	   if(operator[i]==0){
-            			    		   //ŒvZ‚µA¶‹l‚ß
+            			    		   //è¨ˆç®—ã—ã€å·¦è©°ã‚
             			    		   operator[i]=operator[i+1];
             			    		   value_array[i]=value_array[i]+value_array[i+1];
             			    		   for(j=i+1;j<value_count-1;j++){
@@ -760,7 +760,7 @@ KEY3:7
             			    		   i=0;
             			    	   }
             			    	   if(operator[i]==1){
-            			    		   //ŒvZ‚µA¶‹l‚ß
+            			    		   //è¨ˆç®—ã—ã€å·¦è©°ã‚
             			    		   operator[i]=operator[i+1];
             			    		   value_array[i]=value_array[i]-value_array[i+1];
             			    		   for(j=i+1;j<value_count-1;j++){
@@ -793,7 +793,7 @@ KEY3:7
 
 
 
-                //KEY3‚ª‰Ÿ‚³‚ê‚é‚ÆƒŠƒZƒbƒg
+                //KEY3ãŒæŠ¼ã•ã‚Œã‚‹ã¨ãƒªã‚»ãƒƒãƒˆ
                         case 7:
 
 
@@ -824,10 +824,10 @@ KEY3:7
     	            	  			reset();
     	            	  	}
 
-    	            	  	//”Ô†“ü—Í‰æ–Ê
+    	            	  	//ç•ªå·å…¥åŠ›ç”»é¢
     	            	  	while(1){
 
-    	            	       //calcurate game ‚Ìƒ‹[ƒv‚ğbreak‚µAƒQ[ƒ€‘I‘ğ‰æ–Ê‚É–ß‚é
+    	            	       //calcurate game ã®ãƒ«ãƒ¼ãƒ—ã‚’breakã—ã€ã‚²ãƒ¼ãƒ é¸æŠç”»é¢ã«æˆ»ã‚‹
     	            	       if(*(volatile unsigned char *)KEY_BASE==3){
     	            	     	flag_start = false;
     	            	     	flag_reset = false;
@@ -860,7 +860,7 @@ KEY3:7
     	            	          display_value(bango[game_select_value][play_num[game_select_value]]);
     	            	          reset();
     	            	          reset();
-    	            	          //bango ‚Ìd•¡‚ğŠm”F
+    	            	          //bango ã®é‡è¤‡ã‚’ç¢ºèª
     	            	          for(i=0,j=0;i<play_num[game_select_value];i++){
     	            	        	  if(bango[game_select_value][play_num[game_select_value]] == bango[game_select_value][i]){
     	            	        		  j++;
@@ -868,7 +868,7 @@ KEY3:7
     	            	          }
 	            	  				play_num[game_select_value]++;
 
-    	            	          //d•¡‚È‚µ‚Ìê‡
+    	            	          //é‡è¤‡ãªã—ã®å ´åˆ
 if(j==0){
     	            	        	  player_num[game_select_value]++;
 
@@ -883,7 +883,7 @@ n1 = n;
 
     	            	      }
     	            	  	}
-    	            	  	//finish ”Ô†“ü—Í‰æ–Ê
+    	            	  	//finish ç•ªå·å…¥åŠ›ç”»é¢
 
 
 
@@ -921,7 +921,7 @@ n1 = n;
     	            	  					}
     	            	  				}
 
-    	            	  				  //sort(¸‡)
+    	            	  				  //sort(æ˜‡é †)
     	            	  				  for (i=0; i<SIZE; ++i) {
     	            	  				    for (j=i+1; j<SIZE; ++j) {
     	            	  				      if (rank_ray[game_select_value][i] > rank_ray[game_select_value][j]) {
@@ -933,16 +933,16 @@ n1 = n;
     	            	  				  }//finish sort
 
     	            	  				  //score display]
-    	            	  				  printf("-------- ”‡‚í‚¹ƒQ[ƒ€@ƒ‰ƒ“ƒLƒ“ƒO --------\n");
+    	            	  				  printf("-------- æ•°åˆã‚ã›ã‚²ãƒ¼ãƒ ã€€ãƒ©ãƒ³ã‚­ãƒ³ã‚° --------\n");
     	            	  				  for (i=0,k=0; i<SIZE; i++) {
     	            	  					  if(rank_ray[game_select_value][i] != 999 && rank_ray[game_select_value][i] != rank_ray[game_select_value][i-1]){
     	            	  						  k++;
     	            	      				  for (j=0; j<SIZE; j++) {
     	            	      					  if(rank_ray[game_select_value][i] == score[game_select_value][j]){
     	            	      						  status = j;
-    	            	      						  printf("%dˆÊ ”Ô†:%d ƒXƒRƒA:%d",k,j,score[game_select_value][j]);
+    	            	      						  printf("%dä½ ç•ªå·:%d ã‚¹ã‚³ã‚¢:%d",k,j,score[game_select_value][j]);
     	            	      						  if(j == bango[game_select_value][play_num[game_select_value]]){
-    	            	      							  printf(" ©@");
+    	            	      							  printf(" â†ã€€");
     	            	      							  rank = k;
     	            	      						  }
     	            	    							  printf("\n");
@@ -971,7 +971,7 @@ n1 = n;
 
     	            	  		if(flag_calcurate == false){
     	            	  				flag_calcurate = true;
-    	            	  				//rand()%(B-A+1)+A; A‚©‚çB‚Ü‚Å‚Ìƒ‰ƒ“ƒ_ƒ€®”
+    	            	  				//rand()%(B-A+1)+A; Aã‹ã‚‰Bã¾ã§ã®ãƒ©ãƒ³ãƒ€ãƒ æ•´æ•°
     	            	  				if(flag_random == false){
     	            	  					flag_random = true;
     	            						srand(n);
@@ -980,15 +980,15 @@ n1 = n;
 
 
 	            	     				score[game_select_value][bango[game_select_value][play_num[game_select_value]]]++;
-    	            	              //‰æ–Ê•\¦
+    	            	              //ç”»é¢è¡¨ç¤º
     	            	  				//what_is_answer();
 
-    	            	  		}//‰æ–Ê•\¦@if
+    	            	  		}//ç”»é¢è¡¨ç¤ºã€€if
 
 
     	            	  		if(switch_stop_flag == true){
     	            	    switch(*(volatile unsigned char *)KEY_BASE){
-    	            	     //KEY0‚ğ‰Ÿ‚·‚Æ“ü—Í‚³‚ê‚½”š‚ğ•\¦‚µAvalue_array‚É‘ã“ü
+    	            	     //KEY0ã‚’æŠ¼ã™ã¨å…¥åŠ›ã•ã‚ŒãŸæ•°å­—ã‚’è¡¨ç¤ºã—ã€value_arrayã«ä»£å…¥
     	            	     	case 14:
     	            	     		flag13 = false;
     	            	     		flag11 = false;
@@ -1017,7 +1017,7 @@ n1 = n;
     	            	     					past(min,max);
     	            	     				}
     	            	        			else{
-    	            	        				//1•b’x‰„
+    	            	        				//1ç§’é…å»¶
     	            	        				n_sleep = n;
     	            	        				while(n - n_sleep <= 1*SPEED){}
     	            	        			}
@@ -1031,7 +1031,7 @@ n1 = n;
 
 
     	            	     /*
-    	            	     KEY1‚ğ‰Ÿ‚·‚Æ‰‰Z‚ğ‚Ç‚ê‚É‚·‚é‚©operator‚ÉŠi”[
+    	            	     KEY1ã‚’æŠ¼ã™ã¨æ¼”ç®—ã‚’ã©ã‚Œã«ã™ã‚‹ã‹operatorã«æ ¼ç´
     	            	     */
 
     	            	     	case 13:
@@ -1061,7 +1061,7 @@ n1 = n;
     	            	        				past(min,max);
     	            	        			}
     	            	        			else{
-    	            	        				//1•b’x‰„
+    	            	        				//1ç§’é…å»¶
     	            	        				n_sleep = n;
     	            	        				while(n - n_sleep <= 1*SPEED){}
     	            	        			}
@@ -1076,7 +1076,7 @@ n1 = n;
 
 
     	            	     /*
-    	            	     KEY2‚ğ‰Ÿ‚·‚ÆŒvZ‚ªÀs‚³‚êAŒ‹‰Ê‚ª•\¦‚³‚ê‚é
+    	            	     KEY2ã‚’æŠ¼ã™ã¨è¨ˆç®—ãŒå®Ÿè¡Œã•ã‚Œã€çµæœãŒè¡¨ç¤ºã•ã‚Œã‚‹
     	            	     */
     	            	     case 11:
     	            	  		    flag14 = false;
@@ -1091,7 +1091,7 @@ n1 = n;
 
 
 
-    	            	     //KEY3‚ª‰Ÿ‚³‚ê‚é‚ÆƒŠƒZƒbƒg
+    	            	     //KEY3ãŒæŠ¼ã•ã‚Œã‚‹ã¨ãƒªã‚»ãƒƒãƒˆ
     	            	             case 7:
     	            	         		  flag14 = false;
     	            	         		  flag13 = false;
@@ -1111,7 +1111,7 @@ n1 = n;
     	            	  }//switch key_base
     	            	  		}
 
-    	            	     //numbers game ‚Ìƒ‹[ƒv‚ğbreak‚µAƒQ[ƒ€‘I‘ğ‰æ–Ê‚É–ß‚é
+    	            	     //numbers game ã®ãƒ«ãƒ¼ãƒ—ã‚’breakã—ã€ã‚²ãƒ¼ãƒ é¸æŠç”»é¢ã«æˆ»ã‚‹
     	            	     if(*(volatile unsigned char *)KEY_BASE==3){
     	            	   	flag_start = false;
     	            	   	flag_reset = false;
@@ -1139,10 +1139,10 @@ n1 = n;
     	        	  	  flag11 = false;
     	        	  	  flag7 = false;
 
-  	            	  	//”Ô†“ü—Í‰æ–Ê
+  	            	  	//ç•ªå·å…¥åŠ›ç”»é¢
   	            	  	while(1){
 
-  	            	       //calcurate game ‚Ìƒ‹[ƒv‚ğbreak‚µAƒQ[ƒ€‘I‘ğ‰æ–Ê‚É–ß‚é
+  	            	       //calcurate game ã®ãƒ«ãƒ¼ãƒ—ã‚’breakã—ã€ã‚²ãƒ¼ãƒ é¸æŠç”»é¢ã«æˆ»ã‚‹
   	            	       if(*(volatile unsigned char *)KEY_BASE==3){
   	            	     	flag_start = false;
   	            	     	flag_reset = false;
@@ -1172,7 +1172,7 @@ n1 = n;
   	            	  		}
   	            	      if(*(volatile unsigned char *)KEY_BASE==13){
 
-  	    	            	  //1•b’x‰„
+  	    	            	  //1ç§’é…å»¶
   	    	            	   n_sleep = n;
   	    	            	   while(n - n_sleep <= 1*SPEED){}
 
@@ -1181,14 +1181,14 @@ n1 = n;
 
   	            	          reset();
   	            	          fight();
-  	            	          //bango ‚Ìd•¡‚ğŠm”F
+  	            	          //bango ã®é‡è¤‡ã‚’ç¢ºèª
   	            	          for(i=0,j=0;i<play_num[game_select_value];i++){
   	            	        	  if(bango[game_select_value][play_num[game_select_value]] == bango[game_select_value][i]){
   	            	        		  j++;
   	            	        	  }
   	            	          }
   	            	          play_num[game_select_value]++;
-  	            	          //d•¡‚È‚µ‚Ìê‡
+  	            	          //é‡è¤‡ãªã—ã®å ´åˆ
   	            	          if(j==0){
   	            	        	  player_num[game_select_value]++;
   	            	          }else{}
@@ -1199,7 +1199,7 @@ n1 = n;
 
   	            	      }
   	            	  	}
-  	            	  	//finish ”Ô†“ü—Í‰æ–Ê
+  	            	  	//finish ç•ªå·å…¥åŠ›ç”»é¢
 
 
 
@@ -1227,7 +1227,7 @@ n1 = n;
 	            	  					  rank_ray[game_select_value][i] = score[game_select_value][i];
 	            	  					  rank_ray_clear[i] = clear_player[i];
 	            	  				  }
-	            	  				  //sort(~‡) ’§íÒ
+	            	  				  //sort(é™é †) æŒ‘æˆ¦è€…
 	            	  				  for (i=0; i<SIZE; ++i) {
 	            	  				    for (j=i+1; j<SIZE; ++j) {
 	            	  				      if (rank_ray[game_select_value][i] < rank_ray[game_select_value][j]) {
@@ -1238,7 +1238,7 @@ n1 = n;
 	            	  				    }
 	            	  				  }//finish sort
 
-	            	  				  //sort(¸‡) ƒNƒŠƒAÒ
+	            	  				  //sort(æ˜‡é †) ã‚¯ãƒªã‚¢è€…
 	            	  				  for (i=0; i<SIZE; ++i) {
 	            	  				    for (j=i+1; j<SIZE; ++j) {
 	            	  				      if (rank_ray_clear[i] < rank_ray_clear[j]) {
@@ -1249,17 +1249,17 @@ n1 = n;
 	            	  				    }
 	            	  				  }//finish sort
 
-	            	  				  //score display ’§íÒ
-	            	  				  printf("-------- ƒXƒƒbƒgƒQ[ƒ€@’§íÒ  Šæ’£‚èƒ‰ƒ“ƒLƒ“ƒO@--------\n");
+	            	  				  //score display æŒ‘æˆ¦è€…
+	            	  				  printf("-------- ã‚¹ãƒ­ãƒƒãƒˆã‚²ãƒ¼ãƒ ã€€æŒ‘æˆ¦è€…  é ‘å¼µã‚Šãƒ©ãƒ³ã‚­ãƒ³ã‚°ã€€--------\n");
 	            	  				  for (i=0,k=0; i<SIZE; i++) {
 	            	  					  if(rank_ray[game_select_value][i] != 0 && rank_ray[game_select_value][i] != rank_ray[game_select_value][i-1]){
 	            	  						  k++;
 	            	      				  for (j=0; j<SIZE; j++) {
 	            	      					  if(rank_ray[game_select_value][i] == score[game_select_value][j]){
 	            	      						  status = j;
-	            	      						  printf("%dˆÊ ”Ô†:%d ‘’§í‰ñ”:%d",k,j,score[game_select_value][j]);
+	            	      						  printf("%dä½ ç•ªå·:%d ç·æŒ‘æˆ¦å›æ•°:%d",k,j,score[game_select_value][j]);
 	            	      						  if(j == bango[game_select_value][play_num[game_select_value]]){
-	            	      							  printf(" ©@");
+	            	      							  printf(" â†ã€€");
 	            	      							  rank = k;
 	            	      						  }
 	            	    							  printf("\n");
@@ -1268,17 +1268,17 @@ n1 = n;
 	            	  					  }
 	            	  				  }
 
-	            	  				  //score display ƒNƒŠƒAÒ
-	            	  				  printf("-------- ƒXƒƒbƒgƒQ[ƒ€@ƒNƒŠƒAÒ	 ƒ‰ƒ“ƒLƒ“ƒO@--------\n");
+	            	  				  //score display ã‚¯ãƒªã‚¢è€…
+	            	  				  printf("-------- ã‚¹ãƒ­ãƒƒãƒˆã‚²ãƒ¼ãƒ ã€€ã‚¯ãƒªã‚¢è€…	 ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã€€--------\n");
 	            	  				  for (i=0,k=0; i<SIZE; i++) {
 	            	  					  if(rank_ray_clear[i] != 0 && rank_ray_clear[i] != rank_ray_clear[i-1]){
 	            	  						  k++;
 	            	      				  for (j=0; j<SIZE; j++) {
 	            	      					  if(rank_ray_clear[i] == clear_player[j]){
 	            	      						  status = j;
-	            	      						  printf("%dˆÊ ”Ô†:%d ƒNƒŠƒA‚Ü‚Å‚É‚©‚©‚Á‚½’§í‰ñ”:%d",k,j,clear_player[j]);
+	            	      						  printf("%dä½ ç•ªå·:%d ã‚¯ãƒªã‚¢ã¾ã§ã«ã‹ã‹ã£ãŸæŒ‘æˆ¦å›æ•°:%d",k,j,clear_player[j]);
 	            	      						  if(j == bango[game_select_value][play_num[game_select_value]]){
-	            	      							  printf(" ©@");
+	            	      							  printf(" â†ã€€");
 	            	      							  rank = k;
 	            	      						  }
 	            	    							  printf("\n");
@@ -1306,7 +1306,7 @@ n1 = n;
 
 	            	  		if(flag_calcurate == false){
 	            	  				flag_calcurate = true;
-	            	  				//rand()%(B-A+1)+A; A‚©‚çB‚Ü‚Å‚Ìƒ‰ƒ“ƒ_ƒ€®”
+	            	  				//rand()%(B-A+1)+A; Aã‹ã‚‰Bã¾ã§ã®ãƒ©ãƒ³ãƒ€ãƒ æ•´æ•°
 	            	  				if(flag_random == false){
 	            	  					flag_random = true;
 	            						srand(n);
@@ -1314,10 +1314,10 @@ n1 = n;
 
 
 
-	            	              //‰æ–Ê•\¦
+	            	              //ç”»é¢è¡¨ç¤º
 	            	  				//what_is_answer();
 
-	            	  		}//‰æ–Ê•\¦@if
+	            	  		}//ç”»é¢è¡¨ç¤ºã€€if
 
 
 
@@ -1367,7 +1367,7 @@ n1 = n;
 	        	            	    			 //score[game_select_value][bango[game_select_value][play_num[game_select_value]]] = 0;
 	        	            	    			 reset();
 	        	            	    			 cong();
-	        	            	    			  //1•b’x‰„
+	        	            	    			  //1ç§’é…å»¶
 	        	            	    			  	    	            	   n_sleep = n;
 	        	            	    			  	    	            	   while(n - n_sleep <= 1*SPEED){}
 	        	            	    	 }
@@ -1378,7 +1378,7 @@ n1 = n;
 
 
 
-    	        	            	     //numbers game ‚Ìƒ‹[ƒv‚ğbreak‚µAƒQ[ƒ€‘I‘ğ‰æ–Ê‚É–ß‚é
+    	        	            	     //numbers game ã®ãƒ«ãƒ¼ãƒ—ã‚’breakã—ã€ã‚²ãƒ¼ãƒ é¸æŠç”»é¢ã«æˆ»ã‚‹
     	         	            	     if(*(volatile unsigned char *)KEY_BASE==3){
     	         	            	   	flag_start = false;
     	         	            	   	flag_reset = false;
@@ -1397,16 +1397,16 @@ n1 = n;
     	          	            	  }//main game
 
     	          	              }
-//Œˆ’èƒ{ƒ^ƒ“ if
+//æ±ºå®šãƒœã‚¿ãƒ³ if
     	          }
-    	}//‘S‘Ì‚Ìwhile
+    	}//å…¨ä½“ã®while
         return 0;
 }
 
 
 //------------------------------------------------------------------------------------ function -------------------------------------------------------------------------------------------------
 
-//start ‰æ–Ê@•\¦
+//start ç”»é¢ã€€è¡¨ç¤º
 void game(int x){
   FILE *pLCD;
 
@@ -1510,7 +1510,7 @@ else if(fig == 2){
 }
 
 
-//³‰ğ ”»’è
+//æ­£è§£ åˆ¤å®š
 void good(void){
         FILE *pLCD;
 
@@ -1609,7 +1609,7 @@ void wrong(void){
 
 }
 
-//“ü—Íi‰‰ZqˆÈŠOj‚ğƒfƒBƒXƒvƒŒƒC‚É•\¦‚³‚¹‚éŠÖ”
+//å…¥åŠ›ï¼ˆæ¼”ç®—å­ä»¥å¤–ï¼‰ã‚’ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã«è¡¨ç¤ºã•ã›ã‚‹é–¢æ•°
 void time_limit(void){
         FILE *pLCD;
 
@@ -1666,7 +1666,7 @@ void display_score(int score){
             printf("failed lcd");
     }
 }
-//“ü—Íi‰‰ZqˆÈŠOj‚ğƒfƒBƒXƒvƒŒƒC‚É•\¦‚³‚¹‚éŠÖ”
+//å…¥åŠ›ï¼ˆæ¼”ç®—å­ä»¥å¤–ï¼‰ã‚’ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã«è¡¨ç¤ºã•ã›ã‚‹é–¢æ•°
 void display_value(int fig){
         FILE *pLCD;
 
@@ -1686,7 +1686,7 @@ void display_value(int fig){
         }
 
 }
-//“ü—Íi‰‰ZqˆÈŠOj‚ğƒfƒBƒXƒvƒŒƒC‚É•\¦‚³‚¹‚éŠÖ”
+//å…¥åŠ›ï¼ˆæ¼”ç®—å­ä»¥å¤–ï¼‰ã‚’ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã«è¡¨ç¤ºã•ã›ã‚‹é–¢æ•°
 void kuhaku(void){
         FILE *pLCD;
 
@@ -1703,7 +1703,7 @@ void kuhaku(void){
         }
 
 }
-//“ü—Íi‰‰ZqˆÈŠOj‚ğƒfƒBƒXƒvƒŒƒC‚É•\¦‚³‚¹‚éŠÖ”
+//å…¥åŠ›ï¼ˆæ¼”ç®—å­ä»¥å¤–ï¼‰ã‚’ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã«è¡¨ç¤ºã•ã›ã‚‹é–¢æ•°
 void display_start(void){
         FILE *pLCD;
 
@@ -1720,7 +1720,7 @@ void display_start(void){
         }
 
 }
-//“ü—Íi‰‰ZqˆÈŠOj‚ğƒfƒBƒXƒvƒŒƒC‚É•\¦‚³‚¹‚éŠÖ”
+//å…¥åŠ›ï¼ˆæ¼”ç®—å­ä»¥å¤–ï¼‰ã‚’ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã«è¡¨ç¤ºã•ã›ã‚‹é–¢æ•°
 void reset(void){
         FILE *pLCD;
 
@@ -1738,7 +1738,7 @@ void reset(void){
 
 }
 
-//“ü—Íi‰‰ZqˆÈŠOj‚ğƒfƒBƒXƒvƒŒƒC‚É•\¦‚³‚¹‚éŠÖ”
+//å…¥åŠ›ï¼ˆæ¼”ç®—å­ä»¥å¤–ï¼‰ã‚’ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã«è¡¨ç¤ºã•ã›ã‚‹é–¢æ•°
 void enter_bango(void){
         FILE *pLCD;
 
@@ -1757,15 +1757,15 @@ void enter_bango(void){
 }
 
 void seg_display(int value){
-    //•¡”Œ…‚Ì”š‚ğ7seg•\¦
+    //è¤‡æ•°æ¡ã®æ•°å­—ã‚’7segè¡¨ç¤º
     if(value>=10){
       int a[4];
       int multi_value;
       multi_value = value;
-      a[0]=(multi_value%10);multi_value/=10;//1Œ…–Ú
-      a[1]=(multi_value%10);multi_value/=10;//2Œ…–Ú
-      a[2]=(multi_value%10);multi_value/=10;//3Œ…–Ú
-      a[3]=(multi_value%10);multi_value/=10;//4Œ…–Ú
+      a[0]=(multi_value%10);multi_value/=10;//1æ¡ç›®
+      a[1]=(multi_value%10);multi_value/=10;//2æ¡ç›®
+      a[2]=(multi_value%10);multi_value/=10;//3æ¡ç›®
+      a[3]=(multi_value%10);multi_value/=10;//4æ¡ç›®
 
       switch(a[0]){
       	  case 0:
@@ -2081,13 +2081,13 @@ switch(HEX_num){
 
 void bool_check(bool flag7,bool flag11,bool flag13,bool flag14){
       /*
-           bool’lŠm”F«(key3:key2:key1:key0)
-           KEY‘€ì‚ÌƒvƒƒOƒ‰ƒ€‚Å‚Í“¯‚¶KEY‚ª˜A‘±‚Å‰Ÿ‚³‚ê‚é‚±‚Æ‚ª–³‚¢‚æ‚¤‚É‚µ‚Ä‚¢‚é
-           ‚»‚ê‚¼‚ê‚ÌKEY‚Éflag‚ÆŒÄ‚Î‚ê‚éƒu[ƒ‹’l‚ğ‘ã“ü‚³‚¹‚é•Ï”‚ğì‚Á‚Ä‚¢‚ÄA
-           flag‚ªfalse‚Ì‚Æ‚«‚¾‚¯‚»‚ÌKEY‚ğ‰Ÿ‚·‚±‚Æ‚ªo—ˆ‚éB
-           “®ì—áj
-           KEY0‚ª‰Ÿ‚³‚ê‚½ê‡AKEY1,2,3‚Ìflag‚ğfalse‚Æ‚µ,KEY0‚Ìflag‚ğtrue‚Æ‚µ‚Ä‚¢‚éB
-           ‚±‚Ì“®ì‚ğ‚»‚ê‚¼‚ê‚ÌKEY‚Ås‚Á‚Ä‚¢‚éB
+           boolå€¤ç¢ºèªâ†“(key3:key2:key1:key0)
+           KEYæ“ä½œã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã§ã¯åŒã˜KEYãŒé€£ç¶šã§æŠ¼ã•ã‚Œã‚‹ã“ã¨ãŒç„¡ã„ã‚ˆã†ã«ã—ã¦ã„ã‚‹
+           ãã‚Œãã‚Œã®KEYã«flagã¨å‘¼ã°ã‚Œã‚‹ãƒ–ãƒ¼ãƒ«å€¤ã‚’ä»£å…¥ã•ã›ã‚‹å¤‰æ•°ã‚’ä½œã£ã¦ã„ã¦ã€
+           flagãŒfalseã®ã¨ãã ã‘ãã®KEYã‚’æŠ¼ã™ã“ã¨ãŒå‡ºæ¥ã‚‹ã€‚
+           å‹•ä½œä¾‹ï¼‰
+           KEY0ãŒæŠ¼ã•ã‚ŒãŸå ´åˆã€KEY1,2,3ã®flagã‚’falseã¨ã—,KEY0ã®flagã‚’trueã¨ã—ã¦ã„ã‚‹ã€‚
+           ã“ã®å‹•ä½œã‚’ãã‚Œãã‚Œã®KEYã§è¡Œã£ã¦ã„ã‚‹ã€‚
            */
 
                    //key3
@@ -2116,12 +2116,12 @@ void bool_check(bool flag7,bool flag11,bool flag13,bool flag14){
                    }
 }
 /*
-‰‰Zq‚ğƒfƒBƒXƒvƒŒƒC‚É•\¦‚·‚éŠÖ”
-display_operator(0)‚Í+‚Ì•\¦
-display_operator(1)‚Í-‚Ì•\¦
-display_operator(2)‚Í*‚Ì•\¦
-display_operator(3)/‚Ì•\¦
-display_operator(4)‚Í=‚Ì•\¦
+æ¼”ç®—å­ã‚’ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã«è¡¨ç¤ºã™ã‚‹é–¢æ•°
+display_operator(0)ã¯+ã®è¡¨ç¤º
+display_operator(1)ã¯-ã®è¡¨ç¤º
+display_operator(2)ã¯*ã®è¡¨ç¤º
+display_operator(3)/ã®è¡¨ç¤º
+display_operator(4)ã¯=ã®è¡¨ç¤º
 */
 void display_operator(int operator){
         FILE *pLCD;
