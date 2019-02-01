@@ -1,6 +1,6 @@
 
 
-//プロトタイプ宣言 
+//プロトタイプ宣言  
 //test
 //start画面の表示
 void start(void);
