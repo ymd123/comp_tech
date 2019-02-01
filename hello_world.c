@@ -102,6 +102,7 @@ int main()
         bool score_flag = false;
         bool correct_flag = true;
         int seed=0;
+	char *Str = "";
 
         //初期化
         for(j=0;j<GAME_NUMBER;j++){
@@ -1552,6 +1553,19 @@ void cong(void){
 
         if(pLCD){
                 fwrite(szHello, strlen(szHello), 1, pLCD);
+                fclose(pLCD);
+        }else{
+                printf("failed lcd");
+        }
+}
+
+void display_word(char *str){
+	FILE *pLCD;
+
+        pLCD = fopen(LCD_NAME, "w");
+
+        if(pLCD){
+                fwrite(str, strlen(str), 1, pLCD);
                 fclose(pLCD);
         }else{
                 printf("failed lcd");
